@@ -1,12 +1,12 @@
 using MVPSt_2023_Jan.Pages;
 using MVPSt_2023_Jan.Utilities;
-using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 
 namespace MVPSt_2023_Jan.StepDefinitions
 {
     [Binding]
-    public class Seller_Profile_FeatureStepDefinitions : CommonDriver
+    public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
         // create page object initializations and definitions
         TYSPortalPage tysportalPageObj = new TYSPortalPage();
