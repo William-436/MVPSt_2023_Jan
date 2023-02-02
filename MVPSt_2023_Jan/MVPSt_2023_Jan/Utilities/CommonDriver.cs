@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace MVPSt_2023_Jan.Utilities
@@ -12,10 +13,10 @@ namespace MVPSt_2023_Jan.Utilities
 
         //[SetUp]
         //[OneTimeSetUp]
-        //public void LoginSteps()
-        //{
-        // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
-        //driver = new ChromeDriver();
+        public void SetupDriver()
+        {
+            // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
+            driver = new ChromeDriver();
         //Console.WriteLine("**Starting Onboarding portal script from CommonDriver file");
 
         //// login page (TYSPortalPage) object initialization and definition
@@ -26,7 +27,7 @@ namespace MVPSt_2023_Jan.Utilities
         //IWebElement buttonLabel = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
 
         //Assert.That(buttonLabel.Text == "Sign Out", "Failed to Login successfully");
-        //}
+        }
 
         //[TearDown]
         //[OneTimeTearDown]

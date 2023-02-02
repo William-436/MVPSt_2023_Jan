@@ -13,6 +13,7 @@ namespace MVPSt_2023_Jan.StepDefinitions
 
     public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
+        // define Pages and Objects
         TYSPortalPage tysportalPageObj;
         HomePage homePageObj;
         // default constructor
@@ -26,8 +27,9 @@ namespace MVPSt_2023_Jan.StepDefinitions
         public void GivenIHaveSignedIntoTradeYourSkillPortalSuccessfullyUsingEmailAndPassword(string Email, string Pswd)
         {
             // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
-            driver = new ChromeDriver();
+            //driver = new ChromeDriver();
 
+            SetupDriver();
             tysportalPageObj.SigninActions(driver);
         }
 
