@@ -6,11 +6,21 @@ using OpenQA.Selenium.Chrome;
 namespace MVPSt_2023_Jan.StepDefinitions
 {
     [Binding]
+    //public class SellerProfileFeatureStepDefinitions : CommonDriver
+    // create page object initializations and definitions
+    //TYSPortalPage tysportalPageObj = new TYSPortalPage();
+    //HomePage homePageObj = new HomePage();
+
     public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
-        // create page object initializations and definitions
-        TYSPortalPage tysportalPageObj = new TYSPortalPage();
-        HomePage homePageObj = new HomePage();
+        TYSPortalPage tysportalPageObj;
+        HomePage homePageObj;
+        // default constructor
+        public SellerProfileFeatureStepDefinitions()
+        {
+            tysportalPageObj = new TYSPortalPage();
+            homePageObj = new HomePage();
+        }
 
         [Given(@"I have signed into Trade Your Skill portal successfully using email ""([^""]*)"" and password ""([^""]*)""")]
         public void GivenIHaveSignedIntoTradeYourSkillPortalSuccessfullyUsingEmailAndPassword(string Email, string Pswd)
