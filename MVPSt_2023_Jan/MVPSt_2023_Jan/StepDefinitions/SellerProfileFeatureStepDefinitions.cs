@@ -1,7 +1,8 @@
 using MVPSt_2023_Jan.Pages;
 using MVPSt_2023_Jan.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+//using static MVPSt_2023_Jan.Utilities.CommonDriver;
+
 
 namespace MVPSt_2023_Jan.StepDefinitions
 {
@@ -30,25 +31,25 @@ namespace MVPSt_2023_Jan.StepDefinitions
             //driver = new ChromeDriver();
 
             SetupDriver();
-            tysportalPageObj.SigninActions(driver);
+            tysportalPageObj.SigninActions();
         }
 
         [When(@"Seller navigates to the Description")]
         public void WhenSellerNavigatesToTheDescription()
         {
-            homePageObj.NavigateToDescription(driver);
+            homePageObj.NavigateToDescription();
         }
 
         [When(@"Seller enters a new Description '([^']*)'")]
         public void WhenSellerEntersANewDescription(string NewDesc)
         {
-            homePageObj.SetSellersDescription(driver, NewDesc);
+            homePageObj.SetSellersDescription(NewDesc);
         }
 
         [Then(@"The Sellers Profile Description was entered as ""([^""]*)""")]
         public void ThenTheSellersProfileDescriptionWasEnteredAs(string NewDesc)
         {
-            string savedDescription = homePageObj.GetDescription(driver);
+            string savedDescription = homePageObj.GetDescription();
 
             // forced failure by changing returned value in savedDescription
             //savedDescription = "Three and Four and five";
@@ -78,20 +79,20 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [When(@"Seller navigates to Language")]
         public void WhenSellerNavigatesToLanguage()
         {
-            homePageObj.NavigateToLanguage(driver);
+            homePageObj.NavigateToLanguage();
         }
 
         [When(@"Seller enters Language '([^']*)' and Level '([^']*)'")]
         public void WhenSellerEntersLanguageAndLevel(string Language, string Level)
         {
-            homePageObj.SetSellersLanguageAndLevel(driver, Language, Level);
+            homePageObj.SetSellersLanguageAndLevel(Language, Level);
         }
 
         [Then(@"The Sellers Profile Language and Level were entered as '([^']*)' and '([^']*)'")]
         public void ThenTheSellersProfileLanguageAndLevelWereEnteredAsAnd(string Language, string Level)
         {
-            string savedLanguage = homePageObj.GetLanguage(driver);
-            string savedLevel = homePageObj.GetLanguageLevel(driver);
+            string savedLanguage = homePageObj.GetLanguage();
+            string savedLevel = homePageObj.GetLanguageLevel();
 
             // forced failure by changing returned value in savedLanguage
             //savedLanguage = "Happy";
@@ -158,23 +159,23 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [When(@"Seller navigates to Education")]
         public void WhenSellerNavigatesToEducation()
         {
-            homePageObj.NavigateToEducation(driver);
+            homePageObj.NavigateToEducation();
         }
 
         [When(@"Seller enters Education '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
         public void WhenSellerEntersEducationAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
-            homePageObj.SetSellersEducation(driver, Country, University, Title, Degree, YearOfGrad);
+            homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
         }
 
         [Then(@"The Sellers Profile Education was entered as '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
         public void ThenTheSellersProfileEducationWasEnteredAsAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
-            string savedCountry = homePageObj.GetCountry(driver);
-            string savedUniversity = homePageObj.GetUniversity(driver);
-            string savedTitle = homePageObj.GetTitle(driver);
-            string savedDegree = homePageObj.GetDegree(driver);
-            string savedYearOfGrad = homePageObj.GetYearOfGrad(driver);
+            string savedCountry = homePageObj.GetCountry();
+            string savedUniversity = homePageObj.GetUniversity();
+            string savedTitle = homePageObj.GetTitle();
+            string savedDegree = homePageObj.GetDegree();
+            string savedYearOfGrad = homePageObj.GetYearOfGrad();
 
             if (savedCountry == Country && savedUniversity == University && savedTitle == Title && savedDegree == Degree && savedYearOfGrad == YearOfGrad)
             {
@@ -319,7 +320,7 @@ namespace MVPSt_2023_Jan.StepDefinitions
             //{
             //    Console.WriteLine("Failed to Sign Out of Onboardaing portal");
             //}
-            homePageObj.SignOut(driver);
+            homePageObj.SignOut();
             CloseTestRun();
         }
     }
