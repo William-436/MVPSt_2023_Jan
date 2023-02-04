@@ -1,16 +1,11 @@
 using MVPSt_2023_Jan.Pages;
 using MVPSt_2023_Jan.Utilities;
 using NUnit.Framework;
-//using static MVPSt_2023_Jan.Utilities.CommonDriver;
 
 
 namespace MVPSt_2023_Jan.StepDefinitions
 {
     [Binding]
-    //public class SellerProfileFeatureStepDefinitions : CommonDriver
-    // create page object initializations and definitions
-    //TYSPortalPage tysportalPageObj = new TYSPortalPage();
-    //HomePage homePageObj = new HomePage();
 
     public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
@@ -27,11 +22,8 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [Given(@"I have signed into Trade Your Skill portal successfully using email ""([^""]*)"" and password ""([^""]*)""")]
         public void GivenIHaveSignedIntoTradeYourSkillPortalSuccessfullyUsingEmailAndPassword(string Email, string Pswd)
         {
-            // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
-            //driver = new ChromeDriver();
-
             SetupDriver();
-            tysportalPageObj.SigninActions();
+            SignIntoTRSPortal();
         }
 
         [When(@"Seller navigates to the Description")]
@@ -86,6 +78,25 @@ namespace MVPSt_2023_Jan.StepDefinitions
         public void WhenSellerEntersLanguageAndLevel(string Language, string Level)
         {
             homePageObj.SetSellersLanguageAndLevel(Language, Level);
+
+            //if setting the seller's language and level comes back with a 'duplicate' message, then perform error handling (signout and exit the script)
+            //string message = homePageObj.SetSellersLanguageAndLevel(Language, Level);
+            //if (message == "This language is already exist in your language list.")
+            //{
+            //    // Duplicate Language and duplicate level
+            //    Console.WriteLine("Failure [of data]: Duplicate Language and duplicate Level");
+            //    // do not continue the script - just signout and close everything
+            //    driver.Close();
+            //    driver.Quit();
+            //}
+            //if (message == "Duplicated data")
+            //{
+            //    // Duplicate Language, but different level
+            //    Console.WriteLine("Failure [of data]: Duplicate Language, but different Level");
+            //    // do not continue the script - just signout and close everything
+            //    driver.Close();
+            //    driver.Quit();
+            //}
         }
 
         [Then(@"The Sellers Profile Language and Level were entered as '([^']*)' and '([^']*)'")]
@@ -166,6 +177,17 @@ namespace MVPSt_2023_Jan.StepDefinitions
         public void WhenSellerEntersEducationAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
             homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
+            //if setting the seller's education comes back with a 'duplicate' message, then perform error handling (signout and exit the script)
+            //string message = homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
+            //if (message == "This information is already exist.")
+            //{
+            //    Console.WriteLine("Failure [of data]: Duplicate Education data - record already exists");
+            //    // do not continue the script - just signout and close everything
+            //    //AfterScenarioCleanup();
+            //    driver.Close();
+            //    driver.Quit();
+            //}
+
         }
 
         [Then(@"The Sellers Profile Education was entered as '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
@@ -311,16 +333,16 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [AfterScenario]
         public void AfterScenarioCleanup()
         {
-            //Boolean signoutsuccess = homePageObj.SignOut(driver);
-            //if (signoutsuccess = true)
-            //{
-            //    Console.WriteLine("Successfully Signed Out of Onboardaing portal");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Failed to Sign Out of Onboardaing portal");
-            //}
-            homePageObj.SignOut();
+            // sign out and check returned boolean value to see if successful
+            if (homePageObj.SignOut() == true)
+            {
+                Console.WriteLine("Successfully Signed out of Onboarding portal");
+            }
+            else
+            {
+                Console.WriteLine("Failed to Sign Out of Onboarding portal");
+            }
+
             CloseTestRun();
         }
     }

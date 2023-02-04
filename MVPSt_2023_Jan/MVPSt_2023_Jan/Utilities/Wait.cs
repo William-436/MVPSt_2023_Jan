@@ -38,7 +38,7 @@ namespace MVPSt_2023_Jan.Utilities
             }
         }
 
-        public static void WaitForAlertBoxToBePresent(IWebDriver driver, int seconds)
+        public static void WaitForAlertBoxToBePresent(int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 

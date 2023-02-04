@@ -66,6 +66,12 @@ namespace MVPSt_2023_Jan.Pages
             // find and click the Add button
             IWebElement langaddButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
             langaddButton.Click();
+
+            // wait for the alert box to display -- is NOT an ALERT box
+            //Wait.WaitForAlertBoxToBePresent(2);
+            // capture and return the message in the alert box
+            //string alerttext = driver.SwitchTo().Alert().Text;
+            //return alerttext;
         }
 
         public void NavigateToEducation()
@@ -110,6 +116,11 @@ namespace MVPSt_2023_Jan.Pages
             // find and click the Add button
             IWebElement educationaddButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]"));
             educationaddButton.Click();
+
+            // capture and return the message in the alert box to see if it says we already have the data
+            // is NOT an ALERT box
+            //string alerttext = driver.SwitchTo().Alert().Text;
+            //return alerttext;
         }
 
         public string GetDescription()
@@ -181,11 +192,16 @@ namespace MVPSt_2023_Jan.Pages
         //    if (driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i")).
         //}
 
-        public void SignOut()
+        public bool SignOut()
         {
             // sign out of Trade Your Skills portal
             // find and click the Sign Out button
             IWebElement signoutButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/a[2]/button"));
+            if (signoutButton.Text != "Sign Out")
+            {
+                Console.WriteLine("Sign Out button not found - Quitting program");
+                return false;
+            }
             signoutButton.Click();
             // wait for the Sign In button to appear
             Wait.WaitForElementToBeClickable("XPath", "//*[@id=\"home\"]/div/div/div[1]/div/a", 2);
@@ -193,14 +209,15 @@ namespace MVPSt_2023_Jan.Pages
             // if button label is Sign In, then set variable to true, otherwise false
             if (button2Label.Text == "Sign In")
             {
-                //success = true;
-                Console.WriteLine("Successfully Signed Out of Onboarding portal");
+                //Console.WriteLine("Successfully Signed Out of Onboarding portal");
+                return true;
             }
             else
             {
-                //success = false;
-                Console.WriteLine("Failed to Sign Out of Onboarding portal");
+                //Console.WriteLine("Failed to Sign Out of Onboarding portal");
+                return false;
             }
+
             //Assert.That(sobuttonLabel.Text == "Sign Out", "Failed to Login successfully");
             //return success;
         }

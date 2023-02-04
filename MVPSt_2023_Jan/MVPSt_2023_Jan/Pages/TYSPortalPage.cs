@@ -8,7 +8,8 @@ namespace MVPSt_2023_Jan.Pages
 {
     public class TYSPortalPage
     {
-        public void SigninActions()
+        //public void SigninActions()
+        public bool SigninActions()
         {
             Console.WriteLine("Start login from TYSPortalPage");
             driver.Manage().Window.Maximize();
@@ -42,6 +43,17 @@ namespace MVPSt_2023_Jan.Pages
             loginButton.Click();
             // wait for the Home page to load by looking for Sign Out button
             Wait.WaitForElementToExist("XPath", "//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/a[2]/button", 4);
+
+            IWebElement buttonLabel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/a[2]/button"));
+            // if button label is Sign Out, then set variable to (or return) true, otherwise false
+            if (buttonLabel.Text == "Sign Out")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

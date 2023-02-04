@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MVPSt_2023_Jan.Pages;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -8,32 +9,42 @@ namespace MVPSt_2023_Jan.Utilities
     {
         public static IWebDriver driver;
 
-        // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
-        //driver = new ChromeDriver();
-
+        // Nunit Hooks
         //[SetUp]
         //[OneTimeSetUp]
         public void SetupDriver()
         {
+            Console.WriteLine("**Starting Onboarding portal script from CommonDriver");
             // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
             driver = new ChromeDriver();
-        //Console.WriteLine("**Starting Onboarding portal script from CommonDriver file");
+        }
 
-        //// login page (TYSPortalPage) object initialization and definition
-        //TYSPortalPage tysportalPageObj = new TYSPortalPage();
-        //tysportalPageObj.SigninActions(driver);
+        public void SignIntoTRSPortal()
+        {
+            // define Pages and Objects
+            TYSPortalPage tysportalPageObj;
+            HomePage homePageObj;
 
-        //// check if user has logged in successfully by finding Sign Out button at top right-hand corner of screen
-        //IWebElement buttonLabel = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
+            // initialize objects
+            tysportalPageObj = new TYSPortalPage();
+            homePageObj = new HomePage();
 
-        //Assert.That(buttonLabel.Text == "Sign Out", "Failed to Login successfully");
+            // sign in and check returned boolean value to see if successful
+            if (tysportalPageObj.SigninActions() == true)
+            {
+                Console.WriteLine("Successfully Signed into Onboarding portal");
+            }
+            else
+            {
+                Console.WriteLine("Failed to Sign into Onboarding portal");
+            }
         }
 
         //[TearDown]
         //[OneTimeTearDown]
         public void CloseTestRun()
         {
-            Console.WriteLine("**Exiting/Ending Onboarding portal script from CommonDriver file");
+            Console.WriteLine("**Exiting/Ending Onboarding portal script from CommonDriver");
             // close browser
             driver.Close();
             driver.Quit();
