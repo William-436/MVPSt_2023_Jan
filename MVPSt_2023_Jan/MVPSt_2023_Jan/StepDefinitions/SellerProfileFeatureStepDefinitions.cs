@@ -10,12 +10,12 @@ namespace MVPSt_2023_Jan.StepDefinitions
     public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
         // define Pages and Objects
-        TYSPortalPage tysportalPageObj;
+        //TYSPortalPage tysportalPageObj;
         HomePage homePageObj;
         // default constructor
         public SellerProfileFeatureStepDefinitions()
         {
-            tysportalPageObj = new TYSPortalPage();
+            //tysportalPageObj = new TYSPortalPage();
             homePageObj = new HomePage();
         }
 
@@ -342,7 +342,6 @@ namespace MVPSt_2023_Jan.StepDefinitions
             {
                 Console.WriteLine("Failed to Sign Out of Onboarding portal");
             }
-
             CloseTestRun();
         }
     }

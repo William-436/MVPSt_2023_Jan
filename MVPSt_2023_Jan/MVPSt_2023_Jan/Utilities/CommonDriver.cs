@@ -23,11 +23,11 @@ namespace MVPSt_2023_Jan.Utilities
         {
             // define Pages and Objects
             TYSPortalPage tysportalPageObj;
-            HomePage homePageObj;
+            //HomePage homePageObj;
 
             // initialize objects
             tysportalPageObj = new TYSPortalPage();
-            homePageObj = new HomePage();
+            //homePageObj = new HomePage();
 
             // sign in and check returned boolean value to see if successful
             if (tysportalPageObj.SigninActions() == true)
