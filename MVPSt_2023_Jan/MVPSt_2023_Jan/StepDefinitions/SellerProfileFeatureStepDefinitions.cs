@@ -1,55 +1,54 @@
 using MVPSt_2023_Jan.Pages;
 using MVPSt_2023_Jan.Utilities;
-using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
+
 
 namespace MVPSt_2023_Jan.StepDefinitions
 {
     [Binding]
-    public class Seller_Profile_FeatureStepDefinitions : CommonDriver
+
+    public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
-        // create page object initializations and definitions
-        TYSPortalPage tysportalPageObj = new TYSPortalPage();
-        HomePage homePageObj = new HomePage();
+        // define Pages and Objects
+        HomePage homePageObj;
+
+        // default constructor
+        public SellerProfileFeatureStepDefinitions()
+        {
+            // initialize page objects
+            //tysportalPageObj = new TYSPortalPage();
+            homePageObj = new HomePage();
+        }
 
         [Given(@"I have signed into Trade Your Skill portal successfully using email ""([^""]*)"" and password ""([^""]*)""")]
         public void GivenIHaveSignedIntoTradeYourSkillPortalSuccessfullyUsingEmailAndPassword(string Email, string Pswd)
         {
-            // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
-            driver = new ChromeDriver();
-
-            tysportalPageObj.SigninActions(driver);
+            SignIntoTRSPortal();
         }
 
         [When(@"Seller navigates to the Description")]
         public void WhenSellerNavigatesToTheDescription()
         {
-            homePageObj.NavigateToDescription(driver);
+            homePageObj.NavigateToDescription();
         }
 
         [When(@"Seller enters a new Description '([^']*)'")]
         public void WhenSellerEntersANewDescription(string NewDesc)
         {
-            homePageObj.SetSellersDescription(driver, NewDesc);
+            homePageObj.SetSellersDescription(NewDesc);
         }
 
         [Then(@"The Sellers Profile Description was entered as ""([^""]*)""")]
         public void ThenTheSellersProfileDescriptionWasEnteredAs(string NewDesc)
         {
-            string savedDescription = homePageObj.GetDescription(driver);
+            string savedDescription = homePageObj.GetDescription();
 
-            // forced failure by changing returned value in savedDescription
-            //savedDescription = "Three and Four and five";
-            //Assert.That(savedDescription == NewDesc, "Save Description FAILED because actual and expected Descriptions do not match");
             if (savedDescription == NewDesc)
             {
-                //Assert.Pass("Passed: Actual Description matches expected Description");
                 Console.WriteLine("Passed: Actual saved Description matches expected Description");
             }
             else
             {
-                //Console.WriteLine("Failed: Actual saved Description ", ${savedDescription}, " does not match expected Description ", ${NewDesc});
-                //Assert.Fail("Failed: Actual saved Description does not match expected Description");
                 Console.WriteLine("Failed: See actual and expected values in the following 2 lines");
                 Console.WriteLine($"{savedDescription}");
                 Console.WriteLine($"{NewDesc}");
@@ -66,34 +65,28 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [When(@"Seller navigates to Language")]
         public void WhenSellerNavigatesToLanguage()
         {
-            homePageObj.NavigateToLanguage(driver);
+            homePageObj.NavigateToLanguage();
         }
 
         [When(@"Seller enters Language '([^']*)' and Level '([^']*)'")]
         public void WhenSellerEntersLanguageAndLevel(string Language, string Level)
         {
-            homePageObj.SetSellersLanguageAndLevel(driver, Language, Level);
+            homePageObj.SetSellersLanguageAndLevel(Language, Level);
         }
 
         [Then(@"The Sellers Profile Language and Level were entered as '([^']*)' and '([^']*)'")]
         public void ThenTheSellersProfileLanguageAndLevelWereEnteredAsAnd(string Language, string Level)
         {
-            string savedLanguage = homePageObj.GetLanguage(driver);
-            string savedLevel = homePageObj.GetLanguageLevel(driver);
+            string savedLanguage = homePageObj.GetLanguage();
+            string savedLevel = homePageObj.GetLanguageLevel();
 
-            // forced failure by changing returned value in savedLanguage
-            //savedLanguage = "Happy";
-            //Assert.That(savedLanguage == Language, "Save Language FAILED because actual and expected Languages do not match");
             if (savedLanguage == Language && savedLevel == Level)
             {
-                //Assert.Pass("Passed: Actual Language-Level matches expected Language-Level");
                 Console.WriteLine("Passed: Actual saved Language-Level matches expected Language-Level");
                 Console.WriteLine($"{savedLanguage} / {savedLevel}");
             }
             else
             {
-                //Assert.Fail("Failed: Actual saved Language-Level do not match expected Language-Level");
-                //Console.WriteLine("Failed: Actual saved Language-Level ", ${savedLanguage} ++ {Level}, " do not match expected Language ", ${Language} ++ {Level});
                 Console.WriteLine("Failed: See actual and expected values in the following 2 lines");
                 Console.WriteLine($"{savedLanguage} {savedLevel}");
                 Console.WriteLine($"{Language} {Level}");
@@ -146,34 +139,30 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [When(@"Seller navigates to Education")]
         public void WhenSellerNavigatesToEducation()
         {
-            homePageObj.NavigateToEducation(driver);
+            homePageObj.NavigateToEducation();
         }
 
         [When(@"Seller enters Education '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
         public void WhenSellerEntersEducationAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
-            homePageObj.SetSellersEducation(driver, Country, University, Title, Degree, YearOfGrad);
+            homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
         }
 
         [Then(@"The Sellers Profile Education was entered as '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
         public void ThenTheSellersProfileEducationWasEnteredAsAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
-            string savedCountry = homePageObj.GetCountry(driver);
-            string savedUniversity = homePageObj.GetUniversity(driver);
-            string savedTitle = homePageObj.GetTitle(driver);
-            string savedDegree = homePageObj.GetDegree(driver);
-            string savedYearOfGrad = homePageObj.GetYearOfGrad(driver);
+            string savedCountry = homePageObj.GetCountry();
+            string savedUniversity = homePageObj.GetUniversity();
+            string savedTitle = homePageObj.GetTitle();
+            string savedDegree = homePageObj.GetDegree();
+            string savedYearOfGrad = homePageObj.GetYearOfGrad();
 
             if (savedCountry == Country && savedUniversity == University && savedTitle == Title && savedDegree == Degree && savedYearOfGrad == YearOfGrad)
             {
-                //Assert.Pass("Passed: Actual Education matches expected Education");
                 Console.WriteLine("Passed: Actual saved Education matches expected Education");
-                //Console.WriteLine($"{savedCountry} / {savedUniversity} / {savedTitle} / {savedDegree} / {savedYearOfGrad}");
             }
             else
             {
-                //Assert.Fail("Failed: Actual saved Education does not match expected Education");
-                //Console.WriteLine("Failed: Actual saved Education ", ${savedCountry} ++ {savedUniversity} ++ {savedTitle} ++ {savedDegree} ++ {savedYearOfGrad}, " do not match expected Education ", ${Country} ++ {University} ++ {Title} ++ {Degree} ++ {YearOfGrad});
                 Console.WriteLine("Failed: See actual, then expected values in the following 2 lines, respectively");
                 Console.WriteLine($"{savedCountry} {savedUniversity} {savedTitle} {savedDegree} {savedYearOfGrad}");
                 Console.WriteLine($"{Country} {University} {Title} {Degree} {YearOfGrad}");
@@ -298,16 +287,15 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [AfterScenario]
         public void AfterScenarioCleanup()
         {
-            //Boolean signoutsuccess = homePageObj.SignOut(driver);
-            //if (signoutsuccess = true)
-            //{
-            //    Console.WriteLine("Successfully Signed Out of Onboardaing portal");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Failed to Sign Out of Onboardaing portal");
-            //}
-            homePageObj.SignOut(driver);
+            // sign out and check returned boolean value to see if successful
+            if (homePageObj.SignOut() == true)
+            {
+                Console.WriteLine("Successfully Signed out of Onboarding portal");
+            }
+            else
+            {
+                Console.WriteLine("Failed to Sign Out of Onboarding portal");
+            }
             CloseTestRun();
         }
     }

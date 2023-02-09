@@ -20,22 +20,22 @@ namespace MVPSt_2023_Jan.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Seller_Profile_Feature")]
-    public partial class Seller_Profile_FeatureFeature
+    [NUnit.Framework.DescriptionAttribute("SellerProfileFeature")]
+    public partial class SellerProfileFeatureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Seller_Profile_Feature.feature"
+#line 1 "SellerProfileFeature.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Seller_Profile_Feature", "As a \'Trade Your Skills(TYS)\' portal Seller\r\nI would like to add my Profile Detai" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SellerProfileFeature", "As a \'Trade Your Skills(TYS)\' portal Seller\r\nI would like to add my Profile Detai" +
                     "ls\r\nSo that I can view my Profile Details", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }

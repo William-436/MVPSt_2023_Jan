@@ -1,4 +1,4 @@
-﻿Feature: Seller_Profile_Feature
+﻿Feature: SellerProfileFeature
 
 As a 'Trade Your Skills(TYS)' portal Seller
 I would like to add my Profile Details

@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using static MVPSt_2023_Jan.Utilities.CommonDriver;
 
 namespace MVPSt_2023_Jan.Utilities
 {
     public class Wait
     {
-        public static void WaitForElementToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
+        public static void WaitForElementToBeClickable(string locator, string locatorValue, int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
@@ -19,7 +20,7 @@ namespace MVPSt_2023_Jan.Utilities
             }
         }
 
-        public static void WaitForElementToExist(IWebDriver driver, string locator, string locatorValue, int seconds)
+        public static void WaitForElementToExist(string locator, string locatorValue, int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
@@ -37,7 +38,7 @@ namespace MVPSt_2023_Jan.Utilities
             }
         }
 
-        public static void WaitForAlertBoxToBePresent(IWebDriver driver, int seconds)
+        public static void WaitForAlertBoxToBePresent(int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
