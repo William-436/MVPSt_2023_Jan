@@ -1,21 +1,21 @@
 ﻿using MVPSt_2023_Jan.Pages;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace MVPSt_2023_Jan.Utilities
 {
+    [Binding]
     public class CommonDriver
     {
         public static IWebDriver driver;
 
-        // Nunit Hooks
-        //[SetUp]
-        //[OneTimeSetUp]
-        public void SetupDriver()
+        [BeforeScenario]
+        public static void SetupDriver()
+        //public void SetupDriver()
         {
             Console.WriteLine("**Starting Onboarding portal script from CommonDriver");
-            // open Chrome browser because of using OpenQA.Selenium.Chrome; statement at top of code
+
+        // open Chrome browser
             driver = new ChromeDriver();
         }
 
@@ -25,7 +25,7 @@ namespace MVPSt_2023_Jan.Utilities
             TYSPortalPage tysportalPageObj;
             //HomePage homePageObj;
 
-            // initialize objects
+            // initialize page objects
             tysportalPageObj = new TYSPortalPage();
             //homePageObj = new HomePage();
 
@@ -40,11 +40,10 @@ namespace MVPSt_2023_Jan.Utilities
             }
         }
 
-        //[TearDown]
-        //[OneTimeTearDown]
         public void CloseTestRun()
         {
             Console.WriteLine("**Exiting/Ending Onboarding portal script from CommonDriver");
+
             // close browser
             driver.Close();
             driver.Quit();

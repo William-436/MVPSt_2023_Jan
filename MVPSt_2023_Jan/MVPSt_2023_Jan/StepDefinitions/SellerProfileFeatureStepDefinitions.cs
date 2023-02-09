@@ -10,11 +10,12 @@ namespace MVPSt_2023_Jan.StepDefinitions
     public class SellerProfileFeatureStepDefinitions : CommonDriver
     {
         // define Pages and Objects
-        //TYSPortalPage tysportalPageObj;
         HomePage homePageObj;
+
         // default constructor
         public SellerProfileFeatureStepDefinitions()
         {
+            // initialize page objects
             //tysportalPageObj = new TYSPortalPage();
             homePageObj = new HomePage();
         }
@@ -22,7 +23,6 @@ namespace MVPSt_2023_Jan.StepDefinitions
         [Given(@"I have signed into Trade Your Skill portal successfully using email ""([^""]*)"" and password ""([^""]*)""")]
         public void GivenIHaveSignedIntoTradeYourSkillPortalSuccessfullyUsingEmailAndPassword(string Email, string Pswd)
         {
-            SetupDriver();
             SignIntoTRSPortal();
         }
 
@@ -43,18 +43,12 @@ namespace MVPSt_2023_Jan.StepDefinitions
         {
             string savedDescription = homePageObj.GetDescription();
 
-            // forced failure by changing returned value in savedDescription
-            //savedDescription = "Three and Four and five";
-            //Assert.That(savedDescription == NewDesc, "Save Description FAILED because actual and expected Descriptions do not match");
             if (savedDescription == NewDesc)
             {
-                //Assert.Pass("Passed: Actual Description matches expected Description");
                 Console.WriteLine("Passed: Actual saved Description matches expected Description");
             }
             else
             {
-                //Console.WriteLine("Failed: Actual saved Description ", ${savedDescription}, " does not match expected Description ", ${NewDesc});
-                //Assert.Fail("Failed: Actual saved Description does not match expected Description");
                 Console.WriteLine("Failed: See actual and expected values in the following 2 lines");
                 Console.WriteLine($"{savedDescription}");
                 Console.WriteLine($"{NewDesc}");
@@ -78,25 +72,6 @@ namespace MVPSt_2023_Jan.StepDefinitions
         public void WhenSellerEntersLanguageAndLevel(string Language, string Level)
         {
             homePageObj.SetSellersLanguageAndLevel(Language, Level);
-
-            //if setting the seller's language and level comes back with a 'duplicate' message, then perform error handling (signout and exit the script)
-            //string message = homePageObj.SetSellersLanguageAndLevel(Language, Level);
-            //if (message == "This language is already exist in your language list.")
-            //{
-            //    // Duplicate Language and duplicate level
-            //    Console.WriteLine("Failure [of data]: Duplicate Language and duplicate Level");
-            //    // do not continue the script - just signout and close everything
-            //    driver.Close();
-            //    driver.Quit();
-            //}
-            //if (message == "Duplicated data")
-            //{
-            //    // Duplicate Language, but different level
-            //    Console.WriteLine("Failure [of data]: Duplicate Language, but different Level");
-            //    // do not continue the script - just signout and close everything
-            //    driver.Close();
-            //    driver.Quit();
-            //}
         }
 
         [Then(@"The Sellers Profile Language and Level were entered as '([^']*)' and '([^']*)'")]
@@ -105,19 +80,13 @@ namespace MVPSt_2023_Jan.StepDefinitions
             string savedLanguage = homePageObj.GetLanguage();
             string savedLevel = homePageObj.GetLanguageLevel();
 
-            // forced failure by changing returned value in savedLanguage
-            //savedLanguage = "Happy";
-            //Assert.That(savedLanguage == Language, "Save Language FAILED because actual and expected Languages do not match");
             if (savedLanguage == Language && savedLevel == Level)
             {
-                //Assert.Pass("Passed: Actual Language-Level matches expected Language-Level");
                 Console.WriteLine("Passed: Actual saved Language-Level matches expected Language-Level");
                 Console.WriteLine($"{savedLanguage} / {savedLevel}");
             }
             else
             {
-                //Assert.Fail("Failed: Actual saved Language-Level do not match expected Language-Level");
-                //Console.WriteLine("Failed: Actual saved Language-Level ", ${savedLanguage} ++ {Level}, " do not match expected Language ", ${Language} ++ {Level});
                 Console.WriteLine("Failed: See actual and expected values in the following 2 lines");
                 Console.WriteLine($"{savedLanguage} {savedLevel}");
                 Console.WriteLine($"{Language} {Level}");
@@ -177,17 +146,6 @@ namespace MVPSt_2023_Jan.StepDefinitions
         public void WhenSellerEntersEducationAnd(string Country, string University, string Title, string Degree, string YearOfGrad)
         {
             homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
-            //if setting the seller's education comes back with a 'duplicate' message, then perform error handling (signout and exit the script)
-            //string message = homePageObj.SetSellersEducation(Country, University, Title, Degree, YearOfGrad);
-            //if (message == "This information is already exist.")
-            //{
-            //    Console.WriteLine("Failure [of data]: Duplicate Education data - record already exists");
-            //    // do not continue the script - just signout and close everything
-            //    //AfterScenarioCleanup();
-            //    driver.Close();
-            //    driver.Quit();
-            //}
-
         }
 
         [Then(@"The Sellers Profile Education was entered as '([^']*)' '([^']*)' '([^']*)' '([^']*)' and '([^']*)'")]
@@ -201,14 +159,10 @@ namespace MVPSt_2023_Jan.StepDefinitions
 
             if (savedCountry == Country && savedUniversity == University && savedTitle == Title && savedDegree == Degree && savedYearOfGrad == YearOfGrad)
             {
-                //Assert.Pass("Passed: Actual Education matches expected Education");
                 Console.WriteLine("Passed: Actual saved Education matches expected Education");
-                //Console.WriteLine($"{savedCountry} / {savedUniversity} / {savedTitle} / {savedDegree} / {savedYearOfGrad}");
             }
             else
             {
-                //Assert.Fail("Failed: Actual saved Education does not match expected Education");
-                //Console.WriteLine("Failed: Actual saved Education ", ${savedCountry} ++ {savedUniversity} ++ {savedTitle} ++ {savedDegree} ++ {savedYearOfGrad}, " do not match expected Education ", ${Country} ++ {University} ++ {Title} ++ {Degree} ++ {YearOfGrad});
                 Console.WriteLine("Failed: See actual, then expected values in the following 2 lines, respectively");
                 Console.WriteLine($"{savedCountry} {savedUniversity} {savedTitle} {savedDegree} {savedYearOfGrad}");
                 Console.WriteLine($"{Country} {University} {Title} {Degree} {YearOfGrad}");
